@@ -10,11 +10,20 @@
   },
   "scripts": {
     "start": "nodemon ./src/server.js",
-    "seed": "node ./scripts/seedDb.js"
+    "seed": "node ./scripts/seedDb.js",
+    "test:unit": "mocha test/unit/**/*.js --recursive --exit",
+    "test:integration": "mocha test/integration/**/*.js --recursive --exit",
+    "test": "npm run test:unit && npm run test:integration"
   },
   "devDependencies": {
-    "concurrently": "4.1.0",
-    "nodemon": "1.19.1"
+    "chai": "^4.3.6",
+    "concurrently": "^7.5.0",
+    "mocha": "^10.1.0",
+    "moment": "^2.29.4",
+    "nodemon": "^2.0.20",
+    "sinon": "^14.0.1",
+    "sinon-chai": "^3.7.0",
+    "supertest": "^6.3.1"
   },
   "engines": {
     "node": ">=10.16.3"

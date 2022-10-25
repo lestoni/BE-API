@@ -38,13 +38,14 @@ router.get('/:id', async (req, res) =>{
 
   try {
     const contract = await fetchContractById({
-      contract
-    }, contractId, profileId)
+      Contract
+    }, contractId, profileId);
 
     if(!contract) return res.status(404).end()
 
-    res.json(contract)
+    res.json(contract);
   } catch(error) {
+    res.status(500);
     res.json(error)
   }
 });

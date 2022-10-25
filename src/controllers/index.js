@@ -4,7 +4,6 @@
 
 const { Op } = require('sequelize');
 const { CONTRACT_STATUS, PROFILE_TYPE } = require('../entities/constants');
-const { Profile } = require('../services/sqlite/model');
 
 /**
  * SQL Statement
@@ -14,7 +13,7 @@ const { Profile } = require('../services/sqlite/model');
  * @returns contract
  */
 async function fetchContractById(db, contractId, profileId) {
-  const { Contractor } = db;
+  const { Contract } = db;
   const contract = await Contract.findOne({
     where: {
       id: contractId,
@@ -93,7 +92,8 @@ async function fetchActiveUnpaidJobs(db, profileId) {
  * @param {SequelizeModel} contractModel
  * @param {SequelizeModel} JobModel
  * @param {SequelizeModel} Profile 
- * @param {number} profileId 
+ * @param {number} profileId
+ * 
  * @returns contracts list
  */
 async function payContractor(db, jobId, amountToPay) {
@@ -107,6 +107,7 @@ async function payContractor(db, jobId, amountToPay) {
     }, { transaction: trx });
     // handle no job error
     if(!job) throw new Error('Job reference provided is invalid');
+    if(job.paid) throw new Error('Job is already paid for!')
 
     // fetch client and credit their account
     const client = await Profile.findOne({
@@ -181,6 +182,10 @@ async function payContractor(db, jobId, amountToPay) {
     ],
     limit: 1
   });
+
+  if(!jobs.length) {
+    return { bestPayingProfession: null }
+  }
 
   const professionProfile = await Profile.findByPk(jobs[0].Contract.ContractorId);
   return { bestPayingProfession: professionProfile.profession };
