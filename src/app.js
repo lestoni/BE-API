@@ -6,7 +6,6 @@ const bindRoutesToApp = require('./routes/index');
 
 const app = express();
 
-
 app.use(bodyParser.json());
 app.set('sequelize', sequelize)
 app.set('models', sequelize.models)
