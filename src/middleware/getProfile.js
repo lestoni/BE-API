@@ -6,4 +6,14 @@ const getProfile = async (req, res, next) => {
     req.profile = profile
     next()
 }
-module.exports = {getProfile}
+
+const isAuthorized = (authLevel) => {
+    return async (req, res, next) => {
+        if(req.profile.type !== authLevel) return res.status(501).end()
+        next()
+    }
+}
+module.exports = {
+    getProfile,
+    isAuthorized
+}
