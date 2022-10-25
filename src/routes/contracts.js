@@ -12,7 +12,10 @@ const router = express.Router();
   const {id: profileId } = req.profile;
 
   try {
-    const contracts = await fetchProfileContracts(Contract, profileId);
+    const contracts = await fetchProfileContracts({
+      Contract
+    }, profileId);
+    
     res.json(contracts);
   } catch(error) {
     res.status(500);
@@ -29,12 +32,14 @@ const router = express.Router();
  * @returns contract by id
  */
 router.get('/:id', async (req, res) =>{
-  const {Contract} = req.app.get('models')
-  const {id: contractId} = req.params
-  const {id: profileId } = req.profile
+  const {Contract} = req.app.get('models');
+  const {id: contractId} = req.params;
+  const {id: profileId } = req.profile;
 
   try {
-    const contract = await fetchContractById(Contract, contractId, profileId)
+    const contract = await fetchContractById({
+      contract
+    }, contractId, profileId)
 
     if(!contract) return res.status(404).end()
 
