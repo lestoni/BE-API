@@ -107,6 +107,11 @@ Below is a list of the required API's for the application.
 ]
 ```
 
+## Implementation Notes
+
+1. I fired up DB Browser for SQLite and explored the data to understand the relationship between models. I created corresponding SQL statements to get an idea of what kind of queries i expect to build. 
+2. Next up, i have worked with sequelize before all i needed to do was brush up on the docs and write some example queries.
+
   
 
 ## Going Above and Beyond the Requirements
