@@ -1,11 +1,24 @@
 # DEEL BACKEND TASK
 
-  
-
 💫 Welcome! 🎉
 
 
 This backend exercise involves building a Node.js/Express.js app that will serve a REST API. We imagine you should spend around 3 hours at implement this feature.
+
+## Implementation Notes
+
+1. I fired up DB Browser for SQLite and explored the data to understand the relationship between models. I created corresponding SQL statements to get an idea of what kind of queries i expect to build. 
+2. Next up, i have worked with sequelize before all i needed to do was brush up on the docs and write some example queries.
+3. I re-organized the template files and folder for a better structure. Putting all the code in one file makes it a bit bloated and unmaintainable.
+4. I hit a hiccup and spent additional 2 hours (plus the required 3 hours) setting up my workstation in a windows laptop(first time, damn windows!). Issue was with building sqlite3 nodejs module for windows which required VS Build tools which were missing.
+5. I focused mainly in implementing the most efficient sequelize queries:
+    - Use of eager loading to join table fields with operators
+    - Use of transactions to ensure full commit of logic
+
+### Improvements
+
+- API endpoints are not intuitive to know how they work hence a good api spec with swagger would suffice.
+- Improve the sequelize queries with eager loading. Most endpoints required retrival of records from db
 
 ## Data Models
 
@@ -106,12 +119,6 @@ Below is a list of the required API's for the application.
     }
 ]
 ```
-
-## Implementation Notes
-
-1. I fired up DB Browser for SQLite and explored the data to understand the relationship between models. I created corresponding SQL statements to get an idea of what kind of queries i expect to build. 
-2. Next up, i have worked with sequelize before all i needed to do was brush up on the docs and write some example queries.
-3. I re-organized the template files and folder for a better structure. Putting all the code in one file makes it a bit bloated and unmaintainable.
   
 
 ## Going Above and Beyond the Requirements
